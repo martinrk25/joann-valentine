@@ -44,8 +44,9 @@ body {
   margin-top: 25px;
   display: flex;
   justify-content: center;
-  gap: 100px; /* increased space between buttons */
+  gap: 20px; /* gap between buttons */
   position: relative;
+  height: 50px; /* give some space for No button to move */
 }
 
 button {
@@ -55,21 +56,21 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease-out;
-  position: relative;
 }
 
 #yes {
   background: #ff4d88;
   color: white;
+  position: relative; /* keep in normal flow */
 }
 
 #no {
   background: #ddd;
   color: black;
-  position: absolute;
-  transition: left 0.3s ease, top 0.3s ease; /* smooth movement */
-  left: 200px; /* safe starting position */
+  position: absolute; /* moves independently */
+  left: 120px; /* start to the right of Yes button */
   top: 0px;
+  transition: left 0.3s ease, top 0.3s ease; /* smooth movement */
 }
 
 .dance {
@@ -113,11 +114,9 @@ button {
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
-const card = document.getElementById("card");
+const container = document.getElementById("button-container");
 
-// Set initial position for No button
-noBtn.style.left = '250px';
-noBtn.style.top = '0px';
-
+// No button movement
 document.addEventListener("mousemove", (e) => {
-  const rect = n
+  const rect = noBtn.getBoundingClientRect();
+  const yesRect = yesBtn.ge
