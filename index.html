@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Joann ❤️</title>
+<title>For You ❤️</title>
 <style>
 body {
   background: linear-gradient(135deg, #ffd6e8, #ffe6f0);
   height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
-  position: relative;
   overflow: hidden;
 }
 
@@ -32,21 +32,23 @@ button {
   font-size: 16px;
   cursor: pointer;
   position: absolute;
+  transition: all 0.1s ease-out;
 }
 
 #yes {
   background: #ff4d88;
   color: white;
+  bottom: -70px;
   left: 50%;
   transform: translateX(-50%);
-  top: 200px;
   position: relative;
 }
 
 #no {
   background: #ddd;
-  left: 200px;
   top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .dance {
@@ -61,14 +63,16 @@ button {
 }
 </style>
 </head>
-
 <body>
 
 <div class="card" id="card">
   <h2>🐼❤️🐼</h2>
 
   <h3>Our first meet…</h3>
-  <p>I figured our first meet deserved a little moment of its own, and some things feel better when they're asked in a special way.</p>
+  <p>
+    I figured our first meet deserved a little moment of its own,<br>
+    and some things feel better when they're asked in a special way.
+  </p>
 
   <p><b>Would you like to spend Valentine’s weekend with me? 💘</b></p>
 
@@ -80,18 +84,39 @@ button {
 
 <script>
 const noBtn = document.getElementById("no");
-const card = document.getElementById("card");
+const yesBtn = document.getElementById("yes");
 
-// Runaway No button when mouse comes close
+// Move No button randomly whenever mouse comes close
 document.addEventListener("mousemove", (e) => {
   const rect = noBtn.getBoundingClientRect();
-  const btnX = rect.left + rect.width / 2;
-  const btnY = rect.top + rect.height / 2;
-  const dx = e.clientX - btnX;
-  const dy = e.clientY - btnY;
+  const dx = e.clientX - (rect.left + rect.width/2);
+  const dy = e.clientY - (rect.top + rect.height/2);
   const distance = Math.sqrt(dx*dx + dy*dy);
 
-  if(distance < 100) { // when cursor is close
-    const angle = Math.atan2(dy, dx);
-    const escapeDistance = 120;
+  if(distance < 100) { // mouse is close
+    const viewportWidth = window.innerWidth - rect.width;
+    const viewportHeight = window.innerHeight - rect.height;
+    const randomX = Math.random() * viewportWidth;
+    const randomY = Math.random() * viewportHeight;
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
+});
 
+// Yes button click
+function yesClick() {
+  document.body.innerHTML = `
+  <div style="text-align:center; margin-top:100px;">
+    <h1 style="color:#ff4d88;">IT’S A DATE 😍🎉</h1>
+    <div>
+      <span class="dance">🐼</span>
+      <span class="dance">🐼</span>
+    </div>
+    <p style="margin-top:15px;">Can’t wait for our Valentine’s weekend 💖</p>
+    <p style="font-size:18px;"><b>See you later, alligator 🐊😉</b></p>
+  </div>`;
+}
+</script>
+
+</body>
+</html>
