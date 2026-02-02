@@ -66,6 +66,7 @@ button {
 #no {
   background: #ddd;
   color: black;
+  animation: dance 0.6s infinite alternate; /* keeps dancing */
 }
 
 .dance {
@@ -98,49 +99,9 @@ button {
 
   <p><b>Would you like to spend Valentine’s weekend with me? 💘</b></p>
 
-  <div class="button-container">
+  <div class="button-container" id="button-container">
     <button id="yes" onclick="yesClick()">Yes</button>
     <button id="no">No</button>
   </div>
 
-  <p class="small-text">No is feeling shy today 😌</p>
-</div>
-
-<script>
-const noBtn = document.getElementById("no");
-
-// Move No button randomly whenever mouse comes close
-document.addEventListener("mousemove", (e) => {
-  const rect = noBtn.getBoundingClientRect();
-  const dx = e.clientX - (rect.left + rect.width/2);
-  const dy = e.clientY - (rect.top + rect.height/2);
-  const distance = Math.sqrt(dx*dx + dy*dy);
-
-  if(distance < 80) { // mouse is close
-    const viewportWidth = window.innerWidth - rect.width - 20;
-    const viewportHeight = window.innerHeight - rect.height - 20;
-    const randomX = Math.random() * viewportWidth;
-    const randomY = Math.random() * viewportHeight;
-    noBtn.style.position = 'absolute';
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-  }
-});
-
-// Yes button click
-function yesClick() {
-  document.body.innerHTML = `
-  <div style="text-align:center; margin-top:100px;">
-    <h1 style="color:#ff4d88;">IT’S A DATE 😍🎉</h1>
-    <div>
-      <span class="dance">🐱</span>
-      <span class="dance">🐱</span>
-    </div>
-    <p style="margin-top:15px;">Can’t wait for our Valentine’s weekend 💖</p>
-  </div>
-  `;
-}
-</script>
-
-</body>
-</html>
+  <p class="small-text">No is feeling shy today 😌</
