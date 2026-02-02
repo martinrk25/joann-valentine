@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<style>
+body {
+  background: linear-gradient(135deg, #ffd6e8, #ffe6f0);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 360px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4d88;
+  color: white;
+}
+
+#no {
+  background: #ddd;
+  margin-left: 20px;
+  position: absolute;
+}
+
+.dance {
+  font-size: 70px;
+  animation: dance 0.6s infinite alternate;
+  display: inline-block;
+}
+
+@keyframes dance {
+  from { transform: rotate(-10deg) translateY(0); }
+  to { transform: rotate(10deg) translateY(-10px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h2>🐼❤️🐼</h2>
+
+  <h3>Our first meet…</h3>
+  <p>
+    I figured our first meet deserved a little moment of its own,<br>
+    and some things feel better when they're asked in a special way.
+  </p>
+
+  <p><b>Would you like to spend Valentine’s weekend with me? 💘</b></p>
+
+  <button id="yes" onclick="yesClick()">Yes</button>
+  <button id="no" onclick="moveNo()">No</button>
+
+  <p style="font-size:12px;color:gray;">No is feeling shy today 😌</p>
+</div>
+
+<script>
+function moveNo(){
+  const b = document.getElementById("no");
+  b.style.left = Math.random() * 200 + "px";
+  b.style.top = Math.random() * 200 + "px";
+}
+
+function yesClick(){
+  document.body.innerHTML = `
+  <div style="text-align:center;">
+    <h1 style="color:#ff4d88;">IT’S A DATE 😍🎉</h1>
+    <div>
+      <span class="dance">🐼</span>
+      <span class="dance">🐼</span>
+    </div>
+    <p style="margin-top:15px;">Can’t wait for our Valentine’s weekend 💖</p>
+    <p style="font-size:18px;"><b>See you later, alligator 🐊😉</b></p>
+  </div>`;
+}
+</script>
+
+</body>
+</html>
