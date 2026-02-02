@@ -17,38 +17,55 @@ body {
 
 .card {
   background: white;
-  padding: 30px;
-  border-radius: 20px;
+  padding: 40px 30px;
+  border-radius: 25px;
   text-align: center;
-  width: 360px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 380px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.card h2 {
+  font-size: 50px;
+}
+
+.card h3 {
+  margin: 15px 0;
+  font-size: 22px;
+}
+
+.card p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 15px 0;
+}
+
+.button-container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   position: relative;
 }
 
 button {
-  padding: 10px 25px;
+  padding: 12px 28px;
   border: none;
-  border-radius: 20px;
+  border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  position: absolute;
-  transition: all 0.1s ease-out;
+  transition: all 0.2s ease-out;
+  position: relative;
 }
 
 #yes {
   background: #ff4d88;
   color: white;
-  bottom: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-  position: relative;
 }
 
 #no {
   background: #ddd;
-  top: 200px;
-  left: 50%;
-  transform: translateX(-50%);
+  color: black;
 }
 
 .dance {
@@ -61,6 +78,12 @@ button {
   from { transform: rotate(-10deg) translateY(0); }
   to { transform: rotate(10deg) translateY(-10px); }
 }
+
+.small-text {
+  font-size: 12px;
+  color: gray;
+  margin-top: 10px;
+}
 </style>
 </head>
 <body>
@@ -70,21 +93,21 @@ button {
 
   <h3>Our first meet…</h3>
   <p>
-    I figured our first meet deserved a little moment of its own,<br>
-    and some things feel better when they're asked in a special way.
+    I figured our first meet deserved a little moment of its own and some things feel better when they're asked in a special way.
   </p>
 
   <p><b>Would you like to spend Valentine’s weekend with me? 💘</b></p>
 
-  <button id="yes" onclick="yesClick()">Yes</button>
-  <button id="no">No</button>
+  <div class="button-container">
+    <button id="yes" onclick="yesClick()">Yes</button>
+    <button id="no">No</button>
+  </div>
 
-  <p style="font-size:12px;color:gray;">No is feeling shy today 😌</p>
+  <p class="small-text">No is feeling shy today 😌</p>
 </div>
 
 <script>
 const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
 
 // Move No button randomly whenever mouse comes close
 document.addEventListener("mousemove", (e) => {
@@ -93,11 +116,12 @@ document.addEventListener("mousemove", (e) => {
   const dy = e.clientY - (rect.top + rect.height/2);
   const distance = Math.sqrt(dx*dx + dy*dy);
 
-  if(distance < 100) { // mouse is close
-    const viewportWidth = window.innerWidth - rect.width;
-    const viewportHeight = window.innerHeight - rect.height;
+  if(distance < 80) { // mouse is close
+    const viewportWidth = window.innerWidth - rect.width - 20;
+    const viewportHeight = window.innerHeight - rect.height - 20;
     const randomX = Math.random() * viewportWidth;
     const randomY = Math.random() * viewportHeight;
+    noBtn.style.position = 'absolute';
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
   }
@@ -113,4 +137,10 @@ function yesClick() {
       <span class="dance">🐱</span>
     </div>
     <p style="margin-top:15px;">Can’t wait for our Valentine’s weekend 💖</p>
-    <p style="font-size:18px;"><b>See you later, alligat
+  </div>
+  `;
+}
+</script>
+
+</body>
+</html>
