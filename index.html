@@ -44,7 +44,7 @@ body {
   margin-top: 25px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 100px; /* increased space between buttons */
   position: relative;
 }
 
@@ -68,6 +68,8 @@ button {
   color: black;
   position: absolute;
   transition: left 0.3s ease, top 0.3s ease; /* smooth movement */
+  left: 200px; /* safe starting position */
+  top: 0px;
 }
 
 .dance {
@@ -110,50 +112,12 @@ button {
 
 <script>
 const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
 const card = document.getElementById("card");
 
-// Set initial position
-noBtn.style.left = '200px';
+// Set initial position for No button
+noBtn.style.left = '250px';
 noBtn.style.top = '0px';
 
 document.addEventListener("mousemove", (e) => {
-  const rect = noBtn.getBoundingClientRect();
-  const dx = e.clientX - (rect.left + rect.width/2);
-  const dy = e.clientY - (rect.top + rect.height/2);
-  const distance = Math.sqrt(dx*dx + dy*dy);
-
-  if(distance < 80) { // cursor is close
-    const cardRect = card.getBoundingClientRect();
-
-    let offsetX = dx > 0 ? -80 : 80;
-    let offsetY = dy > 0 ? -40 : 40;
-
-    let newLeft = rect.left + offsetX - cardRect.left;
-    let newTop = rect.top + offsetY - cardRect.top;
-
-    // Keep inside card
-    newLeft = Math.max(0, Math.min(cardRect.width - rect.width, newLeft));
-    newTop = Math.max(0, Math.min(cardRect.height - rect.height, newTop));
-
-    noBtn.style.left = newLeft + 'px';
-    noBtn.style.top = newTop + 'px';
-  }
-});
-
-function yesClick() {
-  document.body.innerHTML = `
-  <div style="text-align:center; margin-top:100px;">
-    <h1 style="color:#ff4d88;">IT’S A DATE 😍🎉</h1>
-    <div>
-      <span class="dance">🐱</span>
-      <span class="dance">🐱</span>
-    </div>
-    <p style="margin-top:15px;">Can’t wait for our Valentine’s weekend 💖</p>
-    <p style="margin-top:15px;">See you later alligator🐊</p>
-  </div>
-  `;
-}
-</script>
-
-</body>
-</html>
+  const rect = n
